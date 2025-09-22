@@ -1,0 +1,530 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NudgeC</title>
+  <style>
+    :root {
+      --brand-blue: #0A66C2;
+      --light-gray: #f5f5f5;
+      --dark-text: #222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--light-gray);
+      color: var(--dark-text);
+      line-height: 1.6;
+    }
+
+    /* Header Navigation */
+    .header {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--brand-blue);
+    }
+
+    .nav-logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark-text);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--brand-blue);
+    }
+
+    .nav-cta {
+      background: var(--brand-blue);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      padding: 4rem 2rem;
+      background: white;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero-content .app-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5rem;
+      border-radius: 16px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark-text);
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--brand-blue);
+      color: white;
+      padding: 1rem 2rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+    }
+
+    .rating {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 300px;
+      padding-top: 2rem;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    /* Features */
+    .features {
+      padding: 4rem 2rem;
+      background: white;
+      margin-top: 2rem;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--dark-text);
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .feature {
+      background: var(--light-gray);
+      padding: 2rem 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .feature h3 {
+      margin-bottom: 0.5rem;
+      color: var(--dark-text);
+    }
+
+    /* How It Works - Inline */
+    .how-it-works-inline {
+      margin-top: 2rem;
+    }
+
+    .how-it-works-inline h3 {
+      color: var(--dark-text);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .how-it-works-inline ol {
+      padding-left: 1.2rem;
+    }
+
+    .how-it-works-inline li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 4rem 2rem;
+      background: white;
+      margin-top: 2rem;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--dark-text);
+    }
+
+    .testimonials blockquote {
+      border-left: 4px solid var(--brand-blue);
+      padding-left: 1.5rem;
+      margin: 2rem auto;
+      font-style: italic;
+      font-size: 1.1rem;
+      max-width: 600px;
+    }
+
+    .testimonials footer {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0.5rem;
+    }
+
+    /* Feedback */
+    .feedback {
+      padding: 4rem 2rem;
+      background: white;
+      margin-top: 2rem;
+    }
+
+    .feedback h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--dark-text);
+    }
+
+    .feedback form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .feedback input,
+    .feedback textarea {
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .feedback textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .feedback button {
+      background: var(--brand-blue);
+      color: white;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .feedback button:hover {
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--brand-blue);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    footer nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer nav a:hover {
+      text-decoration: underline;
+    }
+
+    footer .support-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    footer .support-link:hover {
+      background: rgba(255,255,255,0.2);
+      text-decoration: none;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-image {
+        margin-top: 2rem;
+      }
+
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+
+      .features,
+      .how-it-works,
+      .testimonials,
+      .feedback {
+        padding: 2rem 1rem;
+      }
+    }
+  
+/* Customized for Conferences overrides */
+#customized .feature {
+  background: none; /* clean look without gray box */
+  padding: 0;
+}
+#customized img {
+  width: 100%;
+  max-width: 400px; /* same size as mockup */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin: 0 auto;
+  display: block;
+}
+
+</style>
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-logo">
+        <img src="nudge-logo.png" alt="Nudge Logo" />
+        <span>Nudge</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="mailto:nudgeme.twillo@gmail.com">Support</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+      </ul>
+      <button class="mobile-menu-btn">☰</button>
+      <a href="https://apps.apple.com/us/app/nudge-professional-network/id6749211746" class="nav-cta">Download</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="nudge-logo.png" alt="Nudge App Icon" class="app-icon" />
+      <h1>Connect Instantly - Network effortlessly</h1>
+      <p>Connect with nearby people at events, meetups, and conferences—no awkward intros needed.</p>
+      <a href="https://apps.apple.com/us/app/nudge-professional-network/id6749211746" class="cta-button">Download on the App Store</a>
+      <p class="rating">⭐️ 4.8 • Loved at 5,000+ events</p>
+      
+      <!-- How It Works - Integrated -->
+      <div class="how-it-works-inline">
+        <h3>How It Works:</h3>
+        <ol>
+          <li><strong>Enable Bluetooth</strong> – Nudge will find nearby users instantly.</li>
+          <li><strong>See & Nudge</strong> – Send a quick "Nudge" to break the ice.</li>
+          <li><strong>Chat & Meet</strong> – Take the conversation offline and connect in person.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="mockup.png" alt="Nudge app on iPhone" />
+    </div>
+  </section>
+
+  <!-- Feature Highlights -->
+  
+  <!-- Customized for Conferences -->
+  <section class="features" id="customized">
+    <h2>Customized for Conferences</h2>
+    <div class="feature-list">
+      <div class="feature">
+        <img src="CES.png" alt="CES Conference Screenshot" />
+      </div>
+      <div class="feature">
+        <img src="the20_new.png" alt="The20 Conference Screenshot" />
+      </div>
+    </div>
+  </section>
+
+
+  <section class="features" id="features">
+    <h2>Why Nudge?</h2>
+    <div class="feature-list">
+      <div class="feature">
+        <img src="icon-nearby.png" alt="Nearby icon" />
+        <h3>Discover Nearby People</h3>
+        <p>See who's around you in real time perfect for networking.</p>
+      </div>
+      <div class="feature">
+        <img src="icon-bluetooth.png" alt="Bluetooth icon" />
+        <h3>Works Offline</h3>
+        <p>Bluetooth-powered. No Wi-Fi or mobile data required.</p>
+      </div>
+      <div class="feature">
+        <img src="icon-events.png" alt="Event icon" />
+        <h3>Built for Events</h3>
+        <p>Ideal for conferences, meetups, and social gatherings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works - Removed standalone section -->
+
+  <!-- Testimonials - Hidden for now -->
+  <!--
+  <section class="testimonials" id="testimonials">
+    <h2>Loved by Our Users</h2>
+    <blockquote>
+      "Made networking at the conference so much more fun and natural."
+      <footer>— Alex, Event Attendee</footer>
+    </blockquote>
+    <blockquote>
+      "Met three amazing people I would've never talked to otherwise."
+      <footer>— Priya, Meetup Participant</footer>
+    </blockquote>
+  </section>
+  -->
+
+
+  <!-- Feedback -->
+  <section class="feedback" id="feedback">
+    <h2>We'd Love Your Feedback</h2>
+    <form action="mailto:nudgeme.twillo@gmail.com" method="POST" enctype="text/plain">
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Your message" required></textarea>
+      <button type="submit">Send Feedback</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Nudge. Making human connections easier, one conversation at a time.</p>
+    <nav>
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="privacy.html">Terms of Use</a>
+    </nav>
+    <a href="mailto:nudgeme.twillo@gmail.com" class="support-link">📧 Support & Questions</a>
+  </footer>
+</body>
+</html>
